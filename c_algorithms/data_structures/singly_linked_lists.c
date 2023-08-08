@@ -36,6 +36,19 @@ void insert_at_beginnig(node_t **head_list, int new_data){
     (*head_list) = new_node;
 }
 
+void insert_after_given_node (node_t *node, int new_data){
+    node_t * new_node = (node_t *) malloc(sizeof(node_t));
+
+    if (node == NULL) {
+        printf("Ops, given node is null");
+        return;
+    }
+
+    new_node->value = new_data;
+    new_node->next = node->next;
+    node->next = new_node;
+}
+
 void print_list(node_t **head_list){
 
     node_t *temp = (node_t *) malloc(sizeof(node_t));
@@ -57,9 +70,12 @@ int main () {
     insert_at_beginnig(head_list, 21);
     insert_at_beginnig(head_list, 29);
 
-    print_list(head_list);
 
     insert_at_end(head_list, 932);
+
+    node_t *node = *head_list;
+
+    insert_after_given_node(node, 876543);
     print_list(head_list);
 
 }
